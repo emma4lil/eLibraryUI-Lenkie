@@ -29,7 +29,7 @@
               </v-sheet>
               <v-sheet class="mt-4 align-center">
                 <v-btn height="80" width="200" color="primary" @click="showBorrowDialog()">
-                  Borrow
+                  Reserve
                 </v-btn>
                 <v-btn height="80" width="200" color="primary">
                   Notify me
@@ -50,9 +50,27 @@
       transition="dialog-transition"
     >
       <v-card>
+        <v-card-title primary-title>
+          Book Reservations
+        </v-card-title>
+        <v-subheader class="ml-3">
+          Reserver for {{ reserveHours }} hour{{ returnDays > 1 ? 's':'' }}
+        </v-subheader>
         <v-card-text>
-          time picker
+          <v-slider
+            v-model="reserveHours"
+            min="4"
+            max="24"
+            tick-size="4"
+            ticks="always"
+            step="4"
+          />
         </v-card-text>
+        <v-card-actions>
+          <v-btn :loading="loading" block color="primary" dark @click="loading = true">
+            Apply
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </v-row>
@@ -60,15 +78,24 @@
 <script>
 export default {
   name: 'BookDetails',
-  data () {
+  data() {
     return {
-      showDialog: false
+      showDialog: false,
+      reserveHours: 24,
+      loading: false
     }
   },
   methods: {
     showBorrowDialog() {
       this.showDialog = true
+    },
+    applyBorrowing() {
+
+    },
+    makeReservation() {
+
     }
+
   }
 }
 </script>
