@@ -2,11 +2,16 @@
   <v-app dark>
     <v-main>
       <v-system-bar class="mb-10" lights-out height="100" color="">
-        <span class="ml-2 mt-1 text-h4">eLibrary</span>
+        <span class="ml-2 mt-1 text-h4" @click="$router.push('/')">eLibrary</span>
         <v-spacer />
-        <v-btn icon color="success">
-          <v-icon color="black">
+        <v-btn icon color="success" @click.stop="$router.push('/notifications')">
+          <v-icon color="primary">
             mdi-bell
+          </v-icon>
+        </v-btn>
+        <v-btn icon color="success" @click.stop="$router.push('/admin')">
+          <v-icon color="primary">
+            mdi-account-settings
           </v-icon>
         </v-btn>
       </v-system-bar>
