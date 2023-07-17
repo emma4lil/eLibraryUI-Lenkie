@@ -6,13 +6,19 @@
           Martha's eLibrary
         </v-card-text>
         <v-card-text>
+          <div v-if="loading" class="text-center">
+            searching...
+          </div>
           <div class="d-flex justify-center rounded-lg">
-            <search-bar />
+            <search-bar @ev:search="doSearch" />
           </div>
         </v-card-text>
       </v-card>
     </v-col>
     <v-col>
+      <div v-if="books.length == 0" class="text-center">
+        No books to display
+      </div>
       <results-view :books="books" />
     </v-col>
   </v-row>
@@ -26,54 +32,23 @@ export default {
   components: { searchBar, ResultsView },
   data() {
     return {
-      books: [
-        {
-          title: 'Aladin and the seven scrolls',
-          pages: 214,
-          isbn: '233KNKO223',
-          cover_url: 'https://manybooks.net/sites/default/files/styles/220x330sc/public/old-covers/cover-auto-5349.jpg?itok=-w4gFXdq',
-          date_published: '2003'
-        },
-        {
-          title: 'The hand of God',
-          pages: 300,
-          isbn: 'LNNIG12322',
-          cover_url: 'https://manybooks.net/sites/default/files/styles/220x330sc/public/old-covers/cover-orig-498.jpg?itok=zY7xCyMC',
-          date_published: '2003'
-        },
-        {
-          title: 'Aladin and the seven scrolls',
-          pages: 214,
-          isbn: '233KNKO223',
-          cover_url: 'https://manybooks.net/sites/default/files/styles/220x330sc/public/old-covers/cover-orig-14299.jpg?itok=wPpEKSe6',
-          date_published: '2003'
-        },
-        {
-          title: 'The hand of God',
-          pages: 300,
-          isbn: 'LNNIG12322',
-          cover_url: 'https://manybooks.net/sites/default/files/styles/220x330sc/public/old-covers/cover-orig-12523.jpg?itok=e3xgi2G2',
-          date_published: '2003'
-        },
-        {
-          title: 'Aladin and the seven scrolls',
-          pages: 214,
-          isbn: '233KNKO223',
-          cover_url: '/cover.png',
-          date_published: '2003'
-        },
-        {
-          title: 'The hand of God',
-          pages: 300,
-          isbn: 'LNNIG12322',
-          cover_url: '/cover.png',
-          date_published: '2003'
-        }
-      ]
+      books: [],
+      loading: false
     }
   },
+  async mounted() {
+    const result = await this.$getBookList()
+    this.books = result.data
+  },
   methods: {
-    Login() {}
+    Login() {},
+    async doSearch(key) {
+      if (key.length === 0) { key = 'all' }
+      this.loading = true
+      const result = await this.$searchBooks(key)
+      this.books = result.data
+      this.loading = false
+    }
   }
 }
 </script>

@@ -1,13 +1,13 @@
 export default ($axios) => {
   return {
     getBookList: async (params) => {
-      return await $axios.get('/books')
+      return await $axios.get('api/book/get-books')
     },
-    searchBook: async (params) => {
-      return await $axios.get('/books/search/' + params)
+    searchBooks: async (params) => {
+      return await $axios.get('api/book/search/' + params)
     },
-    getBookDetails: async (params) => {
-      return await $axios.get('/books/detail/' + params)
+    getBookDetail: async (params) => {
+      return await $axios.get('api/book/detail/' + params)
     }
   }
 }

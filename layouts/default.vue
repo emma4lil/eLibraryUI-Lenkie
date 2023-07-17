@@ -4,6 +4,11 @@
       <v-system-bar class="mb-10" lights-out height="100" color="">
         <span class="ml-2 mt-1 text-h4" @click="$router.push('/')">eLibrary</span>
         <v-spacer />
+        <v-btn icon color="success" @click.stop="$router.push('/login')">
+          <v-icon color="primary">
+            mdi-login
+          </v-icon>
+        </v-btn>
         <v-btn icon color="success" @click.stop="$router.push('/notifications')">
           <v-icon color="primary">
             mdi-bell
@@ -11,11 +16,11 @@
         </v-btn>
         <v-btn icon color="success" @click.stop="$router.push('/admin')">
           <v-icon color="primary">
-            mdi-account-settings
+            mdi-menu
           </v-icon>
         </v-btn>
       </v-system-bar>
-      <v-container fluid>
+      <v-container>
         <Nuxt />
       </v-container>
     </v-main>

@@ -17,6 +17,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'space-before-function-paren': 0,
-    'no-trailing-spaces': 0
+    'no-trailing-spaces': 0,
+    'vue/valid-v-slot': 0
   }
 }

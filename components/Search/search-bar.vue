@@ -2,6 +2,7 @@
   <v-card width="800" elevation="0" color="grey-lighten-5">
     <v-card-text class="d-flex column">
       <v-text-field
+        v-model="searchKey"
         outlined
         density="compact"
         label="Search publications, articles, keywords, authors, etc."
@@ -17,7 +18,7 @@
         width="200"
         height="50"
         color="primary"
-        @click="search('lima')"
+        @click="search()"
       >
         Search
       </v-btn>
@@ -30,12 +31,14 @@
 <script>
 export default {
   name: 'SearchBar',
-  async mounted() {
-
+  data() {
+    return {
+      searchKey: ''
+    }
   },
   methods: {
-    search (keyword) {
-      this.$searchBook('aosp')
+    search () {
+      this.$emit('ev:search', this.searchKey)
     }
   }
 }

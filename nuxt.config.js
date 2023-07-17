@@ -67,26 +67,19 @@ export default {
   ],
 
   auth: {
-    persistence: 'local', // default
-    initialize: {
-      onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
-      onAuthStateChangedAction: 'onAuthStateChangedAction',
-      subscribeManually: false
-    },
-    ssr: false //
-    // strategies: {
-    //   auth0: {
-    //     domain: 'dev-6r8clfw023kmo15c.us.auth0.com',
-    //     clientId: 'rwxH6Gp1Ex5w1ZveF9Oweu9S3Kk68TP4',
-    //     audience: 'https://elibrary-lenkie.com/'
-    //   }
-    // }
+    strategies: {
+      auth0: {
+        domain: 'dev-6r8clfw023kmo15c.us.auth0.com',
+        clientId: 'rwxH6Gp1Ex5w1ZveF9Oweu9S3Kk68TP4',
+        audience: 'https://elibrary-lenkie.com/'
+      }
+    }
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'https://localhost:7220'
+    baseURL: 'https://fatman.azurewebsites.net'
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
